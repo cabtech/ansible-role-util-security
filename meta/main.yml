@@ -6,7 +6,7 @@ dependencies: []
 galaxy_info:
   author: Tim Short
   description: "Changes Ubuntu settings to improve security"
-  galaxy_tags: [cloud, terraform]
+  galaxy_tags: [security, ubuntu]
   license: GPL v3
   role_name: ansible_role_util_security
   min_ansible_version: "2"
