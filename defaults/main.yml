@@ -1,0 +1,13 @@
+---
+# --------------------------------
+
+security_ssh_permit_empty_passwords: "no"
+security_ssh_permit_root_login: "no"
+
+security_sshd_config: /etc/ssh/sshd_config
+security_sshd_handler_state: restarted
+security_sshd_name: ssh
+security_sshd_state: started
+
+# --------------------------------
+...

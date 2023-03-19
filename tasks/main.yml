@@ -1,0 +1,29 @@
+---
+# --------------------------------
+
+- name: "Set state of SSH daemon"
+  ansible.builtin.service:
+    name: "{{ security_sshd_name }}"
+    state: "{{ security_sshd_state }}"
+  become: true
+  tags: ["ct-security"]
+
+- name: "Configure SSH daemon"
+  ansible.builtin.lineinfile:
+    dest: "{{ security_sshd_config }}"
+    line: "{{ item.line }}"
+    mode: "0644"
+    regexp: "{{ item.regexp }}"
+    state: present
+    validate: 'sshd -T -f %s'
+  with_items:
+  - regexp: "^PermitEmptyPasswords"
+    line: "PermitEmptyPasswords {{ security_ssh_permit_empty_passwords }}"
+  - regexp: "^PermitRootLogin"
+    line: "PermitRootLogin {{ security_ssh_permit_root_login }}"
+  notify: HandlerRestartSshDaemon
+  become: true
+  tags: ["ct-security"]
+
+# --------------------------------
+...
