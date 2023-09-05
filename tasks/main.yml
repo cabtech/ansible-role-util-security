@@ -1,12 +1,17 @@
 ---
 # --------------------------------
 
+- name: "Include variables wrapper"
+  ansible.builtin.include_tasks:
+    file: variables.yml
+  tags: [ct-security]
+
 - name: "Set state of SSH daemon"
   ansible.builtin.service:
     name: "{{ security_sshd_name }}"
     state: "{{ security_sshd_state }}"
   become: true
-  tags: ["ct-security"]
+  tags: [ct-security]
 
 - name: "Configure SSH daemon"
   ansible.builtin.lineinfile:
@@ -23,7 +28,7 @@
     line: "PermitRootLogin {{ security_ssh_permit_root_login }}"
   notify: HandlerRestartSshDaemon
   become: true
-  tags: ["ct-security"]
+  tags: [ct-security]
 
 # --------------------------------
 ...

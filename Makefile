@@ -16,5 +16,10 @@ lint: .ylint .alint
 
 # --------------------------------
 
+.PHONY: push
+push:
+	@mkdir -p /mnt/hgfs/shared/ansible-role-util-security
+	rsync -a * /mnt/hgfs/shared/ansible-role-util-security
+
 clean:
 	@/bin/rm -f .alint .pylint .ylint
