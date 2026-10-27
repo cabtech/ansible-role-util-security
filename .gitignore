@@ -1,5 +1,3 @@
-.alint
-.pylint
-.ylint
+.lint*
 .ansible/
 src/
