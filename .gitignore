@@ -1,3 +1,5 @@
 .alint
 .pylint
 .ylint
+.ansible/
+src/
